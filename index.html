@@ -25,18 +25,10 @@
       font-size: 15px;
       line-height: 1.7;
       overflow-x: hidden;
-      cursor: none;
+      cursor: default;
     }
 
-    .cursor {
-      width: 8px; height: 8px;
-      background: var(--gold); border-radius: 50%;
-      position: fixed; top: 0; left: 0;
-      pointer-events: none; z-index: 9999;
-      transform: translate(-50%,-50%);
-      transition: width 0.3s, height 0.3s, background 0.3s;
-    }
-    .cursor.big { width: 44px; height: 44px; background: transparent; border: 1px solid var(--gold); }
+  .cursor { display: none; }
 
     /* Nav */
     nav {
@@ -69,7 +61,7 @@
     }
     .hero-img {
       position: absolute; inset: 0;
-      background: url('images/CK_Exterior.jpg') center 35% / cover no-repeat;
+      background: url('CK_Exterior.jpg') center 35% / cover no-repeat;
       animation: zoomIn 2.8s cubic-bezier(0.16,1,0.3,1) forwards;
     }
     @keyframes zoomIn { from { transform:scale(1.07); opacity:0; } to { transform:scale(1); opacity:1; } }
