@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="none">
+  <title>Khoury Design Glyph</title>
+  <desc>Mirrored K monogram glyph for Khoury Design</desc>
+  <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Central stem -->
+    <path d="M500 220 L500 780" stroke-width="64"/>
+    <!-- Left mirrored K arms -->
+    <path d="M500 500 L285 315" stroke-width="34"/>
+    <path d="M500 500 L285 685" stroke-width="34"/>
+    <!-- Right mirrored K arms -->
+    <path d="M500 500 L715 315" stroke-width="34"/>
+    <path d="M500 500 L715 685" stroke-width="34"/>
+  </g>
+</svg>
