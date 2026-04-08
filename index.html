@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khoury Design</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:  #0f110e;
+      --cream:  #eceae3;
+      --warm:   #a8b5a0;
+      --gold:   #b8965a;
+      --goldlt: #d4b07a;
+      --sage:   #6b8c6e;
+      --sagelt: #8aad8d;
+      --rule:   rgba(107,140,110,0.22);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black); color: var(--cream);
+      font-family: 'DM Sans', sans-serif; font-weight: 300;
+      font-size: 15px; line-height: 1.7; overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 56px;
+    }
+    nav::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(15,17,14,0.96), transparent);
+      pointer-events: none;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 500;
+      letter-spacing: 0.18em; color: var(--cream); text-decoration: none;
+      position: relative; z-index: 1;
+    }
+    .nav-links { display: flex; gap: 44px; list-style: none; position: relative; z-index: 1; }
+    .nav-links a {
+      font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--warm); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--sagelt); }
+
+    #hero {
+      height: 100vh; position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('omg222.jpg') center 50% / cover no-repeat;
+      animation: heroIn 3s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    @keyframes heroIn { from { transform:scale(1.06); opacity:0; } to { transform:scale(1); opacity:1; } }
+    .hero-veil {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,17,14,0.92) 0%, rgba(15,17,14,0.28) 45%, rgba(15,17,14,0.06) 100%);
+    }
+    .hero-text { position: relative; z-index: 2; padding: 0 56px 84px; }
+    .hero-tag {
+      font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--sagelt); margin-bottom: 20px;
+      opacity: 0; animation: fadeUp 0.8s 0.9s ease forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(68px,10vw,120px);
+      font-weight: 400; line-height: 0.9; color: var(--cream);
+      opacity: 0; animation: fadeUp 1s 1.1s ease forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--goldlt); }
+    .hero-loc {
+      margin-top: 26px; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--warm);
+      opacity: 0; animation: fadeUp 0.8s 1.6s ease forwards;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+
+    #intro { padding: 130px 56px 90px; max-width: 860px; border-left: 4px solid var(--sage); }
+    .gold-rule { width: 40px; height: 1px; background: linear-gradient(to right, var(--sage), var(--gold)); margin-bottom: 32px; }
+    .intro-lead {
+      font-family: 'Playfair Display', serif; font-size: clamp(24px,3vw,36px);
+      font-weight: 400; line-height: 1.5; color: var(--cream);
+    }
+    .intro-lead em { font-style: italic; color: var(--sagelt); }
+    .intro-body { margin-top: 28px; font-size: 14px; color: var(--warm); line-height: 1.9; max-width: 600px; }
+
+    .sec-label { display: flex; align-items: center; gap: 18px; padding: 0 56px; margin-bottom: 64px; }
+    .sec-label span { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sagelt); white-space: nowrap; }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+    #projects { padding: 110px 0 0; }
+    .project { margin-bottom: 160px; }
+    .proj-head { display: flex; justify-content: space-between; align-items: flex-end; padding: 0 56px; margin-bottom: 28px; }
+    .proj-index { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--sagelt); margin-bottom: 8px; }
+    .proj-name {
+      font-family: 'Playfair Display', serif; font-size: clamp(56px,8.5vw,108px);
+      font-weight: 400; line-height: 0.92; color: var(--cream);
+    }
+    .proj-info { text-align: right; max-width: 300px; }
+    .proj-place { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sagelt); margin-bottom: 10px; }
+    .proj-blurb { font-size: 13px; color: var(--warm); line-height: 1.7; }
+
+    .im { display: block; overflow: hidden; background: #181a17; }
+    .im img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+    .im:hover img { transform: scale(1.035); }
+
+    .span-full { width: 100%; aspect-ratio: 16/9; }
+    .grid { display: grid; gap: 4px; margin-top: 4px; }
+    .grid.halves { grid-template-columns: 1fr 1fr; }
+    .grid.thirds { grid-template-columns: 1fr 1fr 1fr; }
+    .grid.thirds-lead { grid-template-columns: 5fr 3fr 3fr; }
+    .grid > .im { aspect-ratio: 4/3; }
+    .proj-rule { height: 1px; background: var(--rule); margin: 80px 56px 0; }
+
+    .rtr { margin-top: 64px; }
+    .rtr-heading { display: flex; align-items: center; gap: 18px; padding: 0 56px; margin-bottom: 32px; }
+    .rtr-heading span { font-size: 10px; letter-spacing: 0.38em; text-transform: uppercase; color: var(--sagelt); white-space: nowrap; }
+    .rtr-heading::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+    .rtr-caption { padding: 0 56px; max-width: 560px; margin-bottom: 36px; }
+    .rtr-caption p {
+      font-family: 'Playfair Display', serif; font-size: clamp(19px,2.2vw,25px);
+      font-weight: 400; font-style: italic; line-height: 1.65; color: var(--warm);
+    }
+
+    .slider-wrap { padding: 0 56px; display: flex; justify-content: center; }
+    .slider-outer { width: 100%; max-width: 580px; }
+    .slider-hint { text-align: center; margin-bottom: 14px; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sagelt); }
+
+    /* SLIDER */
+    .slider-wrap { padding: 0 56px; }
+    .slider-outer { width: 100%; max-width: 520px; margin: 0 auto; }
+    .slider-hint { text-align: center; margin-bottom: 14px; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sagelt); }
+    #cs { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; cursor: col-resize; background: #181a17; }
+    #cs .cs-a { position: absolute; inset: 0; }
+    #cs .cs-a img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #cs .cs-b { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+    #cs .cs-b img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #cs .cs-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--gold); transform: translateX(-50%); pointer-events: none; z-index: 3; }
+    #cs .cs-btn { position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); transform: translate(-50%,-50%); display: flex; align-items: center; justify-content: center; pointer-events: none; box-shadow: 0 2px 14px rgba(0,0,0,0.5); z-index: 4; }
+    #cs .cs-tl { position: absolute; top: 16px; left: 16px; z-index: 5; font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); background: rgba(15,17,14,0.85); padding: 5px 12px; border: 1px solid rgba(184,150,90,0.3); pointer-events: none; }
+    #cs .cs-tr { position: absolute; top: 16px; right: 16px; z-index: 5; font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); background: rgba(15,17,14,0.85); padding: 5px 12px; border: 1px solid rgba(184,150,90,0.3); pointer-events: none; }
+    #cs-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: col-resize; margin: 0; z-index: 10; -webkit-appearance: none; appearance: none; }
+
+    .detail-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin-top: 4px; }
+    .detail-quote { display: flex; flex-direction: column; justify-content: center; padding: 32px 28px; background: #181a17; aspect-ratio: 4/3; }
+    .detail-quote blockquote { font-family: 'Playfair Display', serif; font-size: clamp(15px,1.6vw,19px); font-weight: 400; font-style: italic; line-height: 1.6; color: var(--cream); }
+    .detail-quote cite { display: block; margin-top: 16px; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sagelt); font-style: normal; }
+    .detail-strip .im { aspect-ratio: 4/3; }
+    .rtr-quote { padding: 52px 56px 0; max-width: 540px; }
+    .rtr-quote blockquote {
+      font-family: 'Playfair Display', serif; font-size: clamp(18px,2vw,24px);
+      font-weight: 400; font-style: italic; line-height: 1.65; color: var(--cream);
+    }
+    .rtr-quote cite { display: block; margin-top: 14px; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--sagelt); font-style: normal; }
+
+    #studio { padding: 130px 56px; border-top: 2px solid var(--sage); }
+    .studio-intro { max-width: 760px; margin-bottom: 80px; }
+    .studio-intro p { font-family: 'Playfair Display', serif; font-size: clamp(21px,2.6vw,30px); font-weight: 400; line-height: 1.6; color: var(--cream); }
+    .studio-intro p + p { margin-top: 22px; font-size: clamp(18px,2vw,24px); color: var(--warm); }
+    .duo { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 68px; margin-bottom: 80px; align-items: start; }
+    .duo-rule { background: var(--rule); align-self: stretch; }
+    .p-name { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 400; line-height: 1; color: var(--cream); margin-bottom: 6px; }
+    .p-role { font-size: 10px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--sagelt); margin-bottom: 28px; }
+    .p-bio { font-size: 13.5px; color: var(--warm); line-height: 1.88; border-left: 1px solid var(--rule); padding-left: 22px; }
+    .p-bio + .p-bio { margin-top: 18px; }
+    .pillars { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; border-top: 2px solid var(--sage); border-bottom: 1px solid var(--rule); }
+    .pillar { padding: 38px 28px; border-right: 1px solid var(--rule); }
+    .pillar:last-child { border-right: none; }
+    .p-title { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 400; color: var(--sagelt); margin-bottom: 10px; }
+    .p-body { font-size: 12px; color: var(--warm); line-height: 1.78; }
+
+    #contact { padding: 130px 56px; border-top: 1px solid var(--rule); }
+    .contact-title { font-family: 'Playfair Display', serif; font-size: clamp(48px,7vw,88px); font-weight: 400; line-height: 0.95; color: var(--cream); margin-bottom: 52px; }
+    .contact-title em { font-style: italic; color: var(--sagelt); }
+    .clinks { display: flex; flex-direction: column; gap: 18px; }
+    .cl { display: inline-flex; align-items: center; gap: 18px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--warm); text-decoration: none; transition: color 0.25s; }
+    .cl::before { content: ''; width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; transition: width 0.3s; }
+    .cl:hover { color: var(--sagelt); }
+    .cl:hover::before { width: 38px; }
+
+    footer { padding: 36px 56px; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 11px; color: rgba(168,181,160,0.3); letter-spacing: 0.14em; }
+    .f-logo { font-family: 'Playfair Display', serif; font-size: 15px; letter-spacing: 0.24em; color: rgba(168,181,160,0.2); }
+
+    @media (max-width: 800px) {
+      nav, .hero-text, #intro, .sec-label, .proj-head, .proj-rule,
+      .rtr-heading, .rtr-caption, .rtr-quote, .slider-wrap,
+      #studio, #contact, footer { padding-left: 24px; padding-right: 24px; }
+      .proj-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .proj-info { text-align: left; }
+      .duo { grid-template-columns: 1fr; gap: 48px; }
+      .duo-rule { display: none; }
+      .pillars { grid-template-columns: 1fr 1fr; }
+      .pillar:nth-child(2) { border-right: none; }
+      .grid.thirds-lead, .grid.thirds { grid-template-columns: 1fr 1fr; }
+      .detail-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">KHOURY</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-text">
+    <p class="hero-tag">Architectural Design Studio</p>
+    <h1 class="hero-title">Khoury<br><em>Design</em></h1>
+    <p class="hero-loc">London &nbsp;·&nbsp; Dolomites &nbsp;·&nbsp; and beyond</p>
+  </div>
+</section>
+
+<section id="intro">
+  <div class="gold-rule"></div>
+  <p class="intro-lead">Khoury Design combines interior design and architectural visualisation with a strong focus on <em>atmosphere, materiality, light, and biophilic wellbeing.</em></p>
+  <p class="intro-body">Working between London and the Dolomites, the studio approaches residential space as both a visual composition and an emotional environment. We are interested in how natural light, material warmth, and spatial calm shape the way a home is lived — not only how it photographs.</p>
+</section>
+
+<section id="projects">
+  <div class="sec-label"><span>Selected Work</span></div>
+
+  <div class="project">
+    <div class="proj-head">
+      <div><p class="proj-index">01</p><h2 class="proj-name">Chalet K</h2></div>
+      <div class="proj-info">
+        <p class="proj-place">Megeve, France</p>
+        <p class="proj-blurb">A full alpine chalet visualised across master bathrooms and a complete lower-ground wellness floor — indoor pool, sauna, hammam, and gym set within raw stone arches and aged timber.</p>
+      </div>
+    </div>
+    <div class="im span-full"><img src="NewOutdoor.png" alt="Chalet K exterior" /></div>
+    <div class="grid thirds">
+      <div class="im"><img src="CK_Pool_1.jpg" alt="Wellness floor" /></div>
+      <div class="im"><img src="CK_Pool_7.jpg" alt="Indoor pool" /></div>
+      <div class="im"><img src="CK_Sauna.jpg" alt="Sauna and hammam" /></div>
+    </div>
+    <div class="grid halves" style="margin-top:4px;">
+      <div class="im"><img src="CK_Bath_2.jpg" alt="Master bathroom" /></div>
+      <div class="im"><img src="CK_Bath_4.jpg" alt="Master bathroom, skylight" /></div>
+    </div>
+    <div class="proj-rule"></div>
+  </div>
+
+  <div class="project">
+    <div class="proj-head">
+      <div><p class="proj-index">02</p><h2 class="proj-name">Nyon Apartment</h2></div>
+      <div class="proj-info">
+        <p class="proj-place">Nyon, Switzerland</p>
+        <p class="proj-blurb">A lakeside apartment studied across kitchen and bathroom in day and night light. Marble, brass, and warm grey tile — materiality as the primary design decision.</p>
+      </div>
+    </div>
+    <div class="im span-full"><img src="Nyon_Kitchen_Main.jpg" alt="Nyon kitchen, day" /></div>
+    <div class="grid thirds">
+      <div class="im"><img src="Nyon_Kitchen_Night.jpg" alt="Nyon kitchen, night" /></div>
+      <div class="im"><img src="Nyon_Bathroom_Day.jpg" alt="Nyon bathroom, day" /></div>
+      <div class="im"><img src="Nyon_Bathroom_Night.jpg" alt="Nyon bathroom, night" /></div>
+    </div>
+    <div class="proj-rule"></div>
+  </div>
+
+  <div class="project">
+    <div class="proj-head">
+      <div><p class="proj-index">03</p><h2 class="proj-name">Chiswick Eco House</h2></div>
+      <div class="proj-info">
+        <p class="proj-place">Chiswick, London</p>
+        <p class="proj-blurb">A Passivhaus home redesigned around light, garden connection, and spatial flow. South-facing kitchen opening to the courtyard, and a lower-ground master suite with onyx bathroom.</p>
+      </div>
+    </div>
+    <div class="im span-full"><img src="LV1_Day.jpg" alt="Ground floor, living and kitchen" /></div>
+    <div class="grid thirds">
+      <div class="im"><img src="LV5_Day.jpg" alt="Kitchen island" /></div>
+      <div class="im"><img src="MB1_Day.jpg" alt="Master bedroom" /></div>
+      <div class="im"><img src="GB1_Day.jpg" alt="Garden bedroom" /></div>
+    </div>
+
+    <div class="rtr">
+      <div class="rtr-heading"><span>From Render to Reality — Powder Room</span></div>
+      <div class="rtr-caption">
+        <p>The render is a precise instruction for every tradesperson on site. This is the Chiswick powder room, from drawing to build.</p>
+      </div>
+
+      <div class="slider-wrap">
+        <div class="slider-outer">
+          <p class="slider-hint">Drag to compare</p>
+          <div id="cs">
+            <div class="cs-a"><img src="PR_Real_1.jpg" alt="Built 2025" /></div>
+            <div class="cs-b" id="cs-b"><img src="PR_Render.jpg" alt="Render 2024" /></div>
+            <div class="cs-line" id="cs-line"></div>
+            <div class="cs-btn" id="cs-btn">
+              <svg width="20" height="20" viewBox="0 0 22 22" fill="none"><path d="M8 5L3 11L8 17M14 5L19 11L14 17" stroke="#0f110e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="cs-tl">Render, 2024</span>
+            <span class="cs-tr">Built, 2025</span>
+            <input type="range" id="cs-range" min="0" max="100" value="50" />
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-strip">
+        <div class="im"><img src="PR_Real_2.jpg" alt="Powder room view" /></div>
+        <div class="detail-quote">
+          <blockquote>"The niche was always going to have the figurines. The render told us exactly where they would live."</blockquote>
+          <cite>Stephan Khoury — Chiswick Eco House</cite>
+        </div>
+        <div class="im"><img src="PR_Detail.jpg" alt="Brass tap detail" /></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="studio">
+  <div class="sec-label" style="padding:0;margin-bottom:64px;"><span>Studio</span></div>
+  <div class="studio-intro">
+    <p>Khoury Design brings together two complementary disciplines. Stephan Khoury's background in digital arts, classical culture, and psychology informs the studio's approach to visual atmosphere, spatial storytelling, and the emotional effect of light and form. Emilie Khoury's training in fashion styling and interior design in Milan brings a refined understanding of materiality, composition, furnishings, and the lived texture of residential space.</p>
+    <p>Together, the studio is interested not only in how spaces look, but in how they support daily life — through natural light, material warmth, biophilic connection, and a strong sensitivity to the emotional tone of interiors.</p>
+  </div>
+  <div class="duo">
+    <div>
+      <h3 class="p-name">Stephan<br>Khoury</h3>
+      <p class="p-role">Visualisation and Concept, London</p>
+      <p class="p-bio">Stephan trained in digital arts at Chapman University, California, with a minor in classical culture and archaeology. He holds an MSc in psychology from the University of Glasgow. That combination shapes how the studio reads a space: the effect of light temperature, the rhythm of a room, the difference between a plan that calms and one that unsettles.</p>
+      <p class="p-bio">3ds Max &nbsp;·&nbsp; Cinema 4D &nbsp;·&nbsp; Corona &nbsp;·&nbsp; V-Ray &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; ZBrush &nbsp;·&nbsp; Substance Painter</p>
+    </div>
+    <div class="duo-rule"></div>
+    <div>
+      <h3 class="p-name">Emilie<br>Khoury</h3>
+      <p class="p-role">Interior Design, Dolomites</p>
+      <p class="p-bio">Emilie trained in fashion styling before completing a master's in interior design in Milan. She brings material intelligence to every project: the tactile composition of a room, the layering of textile and finish, the warmth that makes a space feel genuinely inhabited rather than staged.</p>
+      <p class="p-bio">Residential interiors &nbsp;·&nbsp; Material palette &nbsp;·&nbsp; Furnishings and styling &nbsp;·&nbsp; Client-facing design</p>
+    </div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><h4 class="p-title">Atmosphere</h4><p class="p-body">How a room is entered, inhabited, and remembered. The emotional tone is designed before the material palette.</p></div>
+    <div class="pillar"><h4 class="p-title">Materiality</h4><p class="p-body">Stone, timber, textile, brass. What a space offers the hand as much as the eye.</p></div>
+    <div class="pillar"><h4 class="p-title">Light</h4><p class="p-body">Daylight and artificial light studied together. Temperature, direction, shadow — the primary tools of spatial mood.</p></div>
+    <div class="pillar"><h4 class="p-title">Wellbeing</h4><p class="p-body">Natural light, greenery, material warmth, spatial calm. Qualities designed into the structure of a space from the very first sketch.</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="contact-title">Start a<br><em>conversation</em></h2>
+  <div class="clinks">
+    <a class="cl" id="eml" href="mailto:hello@khoury.design" onclick="return true;">hello@khoury.design</a>
+    <a class="cl" href="https://www.instagram.com/khoury.design/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <p>2026 Khoury Design. London and Dolomites.</p>
+  <span class="f-logo">KHOURY</span>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Email link — split so Cloudflare cannot parse it
+(function(){
+  var e = document.getElementById('eml');
+  if(e) e.setAttribute('href', 'mai'+'lto:'+'hello'+'@'+'khoury'+'.design');
+})();
+
+// Comparison slider
+(function(){
+  var box = document.getElementById('cs');
+  var fw  = document.getElementById('cs-fw');   // clip container
+  var fi  = document.getElementById('cs-fi');   // render image inside clip
+  var bar = document.getElementById('cs-bar');
+  var kn  = document.getElementById('cs-kn');
+  if(!box) return;
+
+  function setP(p){
+    p = Math.max(1, Math.min(99, p));
+    fw.style.width  = p + '%';
+    fi.style.width  = (100/p * 100) + '%';
+    bar.style.left  = p + '%';
+    kn.style.left   = p + '%';
+  }
+
+  function pct(e){
+    var r = box.getBoundingClientRect();
+    var x = e.touches ? e.touches[0].clientX : e.clientX;
+    return (x - r.left) / r.width * 100;
+  }
+
+  setP(50);
+
+  var drag = false;
+  box.addEventListener('mousedown',  function(e){ drag=true; setP(pct(e)); e.preventDefault(); });
+  box.addEventListener('touchstart', function(e){ drag=true; setP(pct(e)); },{passive:true});
+  window.addEventListener('mousemove',  function(e){ if(drag){ setP(pct(e)); e.preventDefault(); }});
+  window.addEventListener('touchmove',  function(e){ if(drag
